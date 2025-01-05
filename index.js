@@ -17,7 +17,6 @@ app.use(express.static("public"));
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
-
 // your first API endpoint...
 app.get("/api/hello", function (req, res) {
   res.json({ greeting: "hello API" });
@@ -32,10 +31,11 @@ app.get("/api/:date?", (req, res) => {
   }
   // Check if date is a valid timestamp or date string
   else if (!isNaN(dateParams)) {
-    data = new Date(parseInt(dateParams));
+    date = new Date(parseInt(dateParams));
   } else {
     date = new Date(dateParams);
   }
+  console.log(date)
   // If date is invalid, respond with an error
   if (date instanceof Date && !isNaN(date.getTime())) {
     // Return Unix and UTC time format
